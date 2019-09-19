@@ -1,3 +1,15 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #5eb7b3;
+  background-image: url("https://images.unsplash.com/photo-1475275083424-b4ff81625b60?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=752&q=80");
+  background-color: #cccccc;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .App {
   text-align: center;
 }
@@ -9,7 +21,7 @@
 }
 
 .App-header {
-  background-color: #fff;
+  
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -30,4 +42,41 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.user-form {
+  width: 460px;
+  margin: auto 100px;
+  padding: 32px;
+  font-weight: bold;
+  background-color: rgba(114, 121, 34, 0.9);
+  box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.error {
+  margin: 0;
+  position: absolute;
+  color: fushia;
+}
+
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-top: 32px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
 }
