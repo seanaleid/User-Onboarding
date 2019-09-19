@@ -3,14 +3,14 @@ import {withFormik, Form, Field} from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
-const UserForm = ({values, errors, touched}) => {
-    const [user, setUser] = useState([]);
+const UserForm = ({values, errors, touched, status}) => {
+    const [users, setUsers] = useState([]);
     //set useState outside of the return, need to include the useState to handle the data being posted
-    useEffect((status)=>{
+    useEffect(()=>{
         if(status){
-            setUser([...user, status]);
+            setUsers([...users, status]);
         }
-    }, [user]);
+    }, [status]);
     //the dependency array is watching for changes in status
 
     return(
@@ -37,6 +37,13 @@ const UserForm = ({values, errors, touched}) => {
                 </label>
                 <button>Submit!</button>
             </Form>
+            {users.map(user => (
+                <ul key={user.id}>
+                    <li>Name: {user.name}</li>
+                    <li>Email: {user.email}</li>
+                    <li>Password: {user.password}</li>
+                </ul>
+            ))}
         </div>
     );
 };
@@ -63,8 +70,16 @@ const FormikUserForm = withFormik({
             console.log(response.data);
             //ran a few tests, the data is being posted
         })
+        .catch(error =>{
+            console.log(`There is an error, please go back and fix it.`)
+        })
     }
 })(UserForm);
 
 
 export default FormikUserForm;
+
+// handleSubmit(values, {resetForm}){
+//   console.log(values);
+//   resetForm('');
+// }

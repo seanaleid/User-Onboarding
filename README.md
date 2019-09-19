@@ -31,10 +31,10 @@ We want to create a form to onboard a new user to our system. We need _at least_
 
 ## STEP 3 - Make a POST Request
 
-Being able to `POST` data is a key skill of any developer, no matter your skill level.
+-[X]Being able to `POST` data is a key skill of any developer, no matter your skill level.
 
-- Craft a `POST` request using `axios` that sends your form data to the following endpoint: _https://reqres.in/api/users_
-- Verify using a `console.log()` that you are receiving a successful response back
+-[X]Craft a `POST` request using `axios` that sends your form data to the following endpoint: _https://reqres.in/api/users_
+-[X]Verify using a `console.log()` that you are receiving a successful response back
 
 (Note: For those that are curious, we're using [reqres.in](https://reqres.in/) for this assignment's API. It's a free API that allows us to simulate a `POST` request for any data that we send it. Pretty awesome!)
 
@@ -42,9 +42,9 @@ Being able to `POST` data is a key skill of any developer, no matter your skill 
 
 When you get your data back, you will want to do something with it, right? Let's display a list of users in our app.
 
-- Set up a state property called `users` that is initialized with an empty array
-- Every time you make a `POST` request, and get that new user data back, update your `users` state with the new user added to the array
-- Render `users` in your app. This can be done in the `Form` component, or you can pass the array down to another component and render the `users` there
+-[X]Set up a state property called `users` that is initialized with an empty array
+-[X]Every time you make a `POST` request, and get that new user data back, update your `users` state with the new user added to the array
+-[X]Render `users` in your app. This can be done in the `Form` component, or you can pass the array down to another component and render the `users` there
 
 ## Stretch Goals
 
