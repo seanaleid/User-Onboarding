@@ -10,23 +10,27 @@ const UserForm = ({values, errors, touched, status}) => {
         if(status){
             setUsers([...users, status]);
         }
-    }, [status]);
+    }, [ status]);
     //the dependency array is watching for changes in status
 
     return(
         <div className="user-form">
             <Form>
                 <Field type="text" name="firstName" placeholder="First Name" />
-                {touched.name && errors.name && (
+                {touched.firstName && errors.firstName && (
                     <p className="error">{errors.firstName}</p>
                 )}
                 <Field type="text" name="lastName" placeholder="Last Name" />
-                {touched.name && errors.name && (
+                {touched.lastName && errors.lastName && (
                     <p className="error">{errors.lastName}</p>
                 )}
                 <Field type="email" name="email" placeholder="Email" />
                 {touched.email && errors.email && (
                     <p className="error">{errors.email}</p>
+                )}
+                <Field type="address" name="address" placeholder="Address" />
+                {touched.address && errors.address && (
+                    <p className="error">{errors.address}</p>
                 )}
                 <Field type="password" name="password" placeholder="Password" />
                 {touched.password && errors.password && (
@@ -46,6 +50,7 @@ const UserForm = ({values, errors, touched, status}) => {
                     <li>First Name: {user.firstName}</li>
                     <li>Last Name: {user.lastName}</li>
                     <li>Email: {user.email}</li>
+                    <li>Address: {user.address}</li>
                     <li>Password: {user.password}</li>
                 </ul>
             ))}
@@ -54,18 +59,21 @@ const UserForm = ({values, errors, touched, status}) => {
 };
 
 const FormikUserForm = withFormik({
-    mapPropsToValues({firstName, lastName, email, password, terms}){
+    mapPropsToValues({firstName, lastName, email, address, password, terms}){
         return{
             firstName: firstName || "",
             lastName: lastName || "",
             email: email || "",
+            address: address || "",
             password: password || "",
             terms: terms || false
         };
     },
     validationSchema: Yup.object().shape({
-        name: Yup.string().required(`You must include a valid name`),
+        firstName: Yup.string().required(`You must include a valid name`),
+        lastName: Yup.string().required(`You must include a valid name`),
         email: Yup.string().email().required(`You must include a valid email`),
+        address: Yup.string().required(`You must include a valid address`),
         password: Yup.string().min(9).required(`You must include a password of at least 9 characters`),
     }),
     handleSubmit(values, {setStatus}){
