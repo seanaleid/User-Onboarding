@@ -5,13 +5,16 @@ import axios from "axios";
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
+    width: 100%;
+    display: flex;
+`;
+
+const StyledCard = styled.div`
     width: 460px;
     margin: auto 100px;
-    padding: 32px;
     font-weight: bold;
-    background-color: rgba(255, 213, 7, .9);
-    box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.1);
-    
+    background-color: rgba(255, 213, 7, .7);
+    box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.1); 
 `;
 
 const StyledSpan = styled.span`
@@ -21,8 +24,12 @@ const StyledSpan = styled.span`
 `;
 
 const StyledForm = styled(Form)`
-    max-width: 100%;
-    margin: 10px;
+    width: 460px;
+    margin: auto 50px;
+    padding: 32px;
+    font-weight: bold;
+    background-color: rgba(255, 213, 7, .7);
+    box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.1);
 `;
 
 const StyledField = styled(Field)`
@@ -151,6 +158,7 @@ const UserForm = ({values, errors, touched, status, isSubmitting}) => {
                     )}
                 </StyledSpan> 
                 <label className="checkbox-container">
+                    <a href="#" style={{textDecoration: 'none', color: "black",}}>Agree to terms and conditions</a>
                     <Field type="checkbox" name="terms" checked={values.terms} />
                     {touched.terms && errors.terms && (
                     <p className="error">{errors.terms}</p>
@@ -159,6 +167,7 @@ const UserForm = ({values, errors, touched, status, isSubmitting}) => {
                 </label>
                 <button disabled={isSubmitting}>Submit!</button>
             </StyledForm>
+            <StyledCard>
             {users.map(user => (
                 <ul key={user.id}>
                     <li>First Name: {user.firstName}</li>
@@ -173,6 +182,7 @@ const UserForm = ({values, errors, touched, status, isSubmitting}) => {
                     <li>Password: {user.password}</li>
                 </ul>
             ))}
+            </StyledCard>
         </StyledDiv>
     );
 };
