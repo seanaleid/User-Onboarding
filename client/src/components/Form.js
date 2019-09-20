@@ -3,7 +3,7 @@ import {withFormik, Form, Field} from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
-const UserForm = ({values, errors, touched, status}) => {
+const UserForm = ({values, errors, touched, status, isSubmitting}) => {
     const [users, setUsers] = useState([]);
     //set useState outside of the return, need to include the useState to handle the data being posted
     useEffect(()=>{
@@ -59,7 +59,7 @@ const UserForm = ({values, errors, touched, status}) => {
                 )}
                     <span className="checkmark" />
                 </label>
-                <button>Submit!</button>
+                <button disabled={isSubmitting}>Submit!</button>
             </Form>
             {users.map(user => (
                 <ul key={user.id}>
@@ -104,7 +104,7 @@ const FormikUserForm = withFormik({
         username: Yup.string().required(`You must include a valid address`),
         password: Yup.string().min(9).required(`You must include a password of at least 9 characters`),
     }),
-    handleSubmit(values, {setStatus}){
+    handleSubmit(values, {setStatus, setErrors, resetForm, setSubmitting}){
         axios.post(`https://reqres.in/api/users/`, values)
         .then(response => {
             setStatus(response.data);
@@ -115,6 +115,14 @@ const FormikUserForm = withFormik({
         .catch(error =>{
             console.log(`There is an error, please go back and fix it.`)
         })
+        setTimeout(() => {
+            if(values.email === 'waffle@syrup.com'){
+                setErrors({email: 'The email: waffle@syrup.com is already taken.'})
+            } else {
+                resetForm()
+            }
+            setSubmitting(false)
+        }, 3000)
     }
 })(UserForm);
 
